@@ -1,4 +1,6 @@
-package robo;
+package roboCleaner.robo;
+
+import roboCleaner.domain.Direction;
 
 public class DirectionsFactory {
 

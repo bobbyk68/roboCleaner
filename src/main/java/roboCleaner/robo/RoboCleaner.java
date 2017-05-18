@@ -1,5 +1,6 @@
-package robo;
+package roboCleaner.robo;
 
+import roboCleaner.domain.Direction;
 import roboCleaner.domain.Point;
 import roboCleaner.domain.RoomGrid;
 

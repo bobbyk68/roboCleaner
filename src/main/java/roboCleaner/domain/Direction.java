@@ -1,6 +1,5 @@
-package robo;
+package roboCleaner.domain;
 
-import roboCleaner.domain.Point;
 
 public class Direction {
 	

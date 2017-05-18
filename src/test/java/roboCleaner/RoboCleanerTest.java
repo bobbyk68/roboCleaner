@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import robo.Direction;
-import robo.DirectionsFactory;
-import robo.RoboCleaner;
+import roboCleaner.domain.Direction;
 import roboCleaner.domain.Point;
 import roboCleaner.domain.RoomGrid;
+import roboCleaner.robo.DirectionsFactory;
+import roboCleaner.robo.RoboCleaner;
 
 public class RoboCleanerTest {
 

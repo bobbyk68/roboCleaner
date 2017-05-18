@@ -1,32 +1,39 @@
 package roboCleaner.robo;
 
 import roboCleaner.domain.Direction;
+import roboCleaner.domain.Directions;
 
 public class DirectionsFactory {
+	
+	private static final String DIRECTION_OPTIONS = "NSEW";
 
 	private DirectionsFactory(){
-		
 	}
 	
 	public static Direction getInstance(String template){
-		Direction direction = null;
-		switch(template) {
+		Direction returnDirection = new Direction(0,0);
+		Directions direction = null;
 		
-			case "NORTH" : 	direction =  new Direction(0,1);
-							break;
-							
-			case "EAST"  :	direction = new Direction(1, 0);
-							break;
-							
-			case "WEST"  :	direction = new Direction(0, -1);
-							break;
-							
-			case "SOUTH" :	direction = new Direction(0, -1);
-							break;
-							
-			default		 :  direction = null;
-						
+		if ( DIRECTION_OPTIONS.indexOf(template) != -1) {
+			direction = Directions.valueOf(template);
+			switch(direction) {
+			
+				case N : 	returnDirection =  new Direction(0,1);
+				break;
+				
+				case E  :	returnDirection = new Direction(1, 0);
+				break;
+				
+				case W  :	returnDirection = new Direction(0, -1);
+				break;
+				
+				case S :	returnDirection = new Direction(0, -1);
+				break;
+				
+				default	:  returnDirection = new Direction(0,0);
+			}
 		}
-		return direction;
+		
+		return returnDirection;
 	}
 }

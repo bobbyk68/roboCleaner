@@ -29,17 +29,18 @@ public class RoboCleanerTest {
 	@Test
 	public void testForDirtyRoom() {
 		RoomGrid dirtyRoom = new RoomGrid(5);
-		dirtyRoom.setDirtyLocation(1,1);
+		dirtyRoom.setDirtyLocation(new Point(1,1));
+		dirtyRoom.setDirtyLocation(new Point(2,2));
 		assertFalse( dirtyRoom.isAllClean());
 	}
 	
 	@Test
 	public void setDirtyLocationOutsideGridTest() {
 		RoomGrid staysClean = new  RoomGrid(5);
-		boolean didItBecomeDirty = staysClean.setDirtyLocation(12,12);
+		boolean didItBecomeDirty = staysClean.setDirtyLocation(new Point(12,12));
 		assertFalse(didItBecomeDirty);
 		
-		boolean tryAgain = staysClean.setDirtyLocation(-1, -1);
+		boolean tryAgain = staysClean.setDirtyLocation(new Point(-1, -1));
 		assertFalse(tryAgain);
 	}
 	
@@ -68,16 +69,25 @@ public class RoboCleanerTest {
 	public void sendRobotInDirection() {
 		RoboCleaner rc =
 				 new RoboCleaner(new RoomGrid(5), new Point(2,2));
-		Direction east = DirectionsFactory.getInstance("EAST");
+		Direction east = DirectionsFactory.getInstance("E");
 		rc.move(east);
 		assertEquals(rc.getLocation(), new Point(3,2));
+	}
+	
+	@Test
+	public void sendRobotWrongMessage() {
+		RoboCleaner rc =
+				 new RoboCleaner(new RoomGrid(5), new Point(2,2));
+		Direction east = DirectionsFactory.getInstance("EAST");
+		rc.move(east);
+		assertEquals(rc.getLocation(), new Point(2,2));
 	}
 	
 	@Test
 	public void sendRobotTwoSteps() {
 		RoboCleaner rc =
 				 new RoboCleaner(new RoomGrid(5), new Point(2,2));
-		Direction east = DirectionsFactory.getInstance("EAST");
+		Direction east = DirectionsFactory.getInstance("E");
 		rc.move(east);
 		rc.move(east);
 		assertEquals(rc.getLocation(), new Point(4,2));
@@ -88,7 +98,7 @@ public class RoboCleanerTest {
 		
 		RoboCleaner rc =
 				 new RoboCleaner(new RoomGrid(5), new Point(0,0));
-		Direction west = DirectionsFactory.getInstance("WEST");
+		Direction west = DirectionsFactory.getInstance("W");
 		rc.move(west);
 		assertEquals(rc.getLocation(), new Point(0,0));
 		assertTrue(new RoomGrid(5).insideTheRoom(rc.getLocation()));
@@ -98,7 +108,7 @@ public class RoboCleanerTest {
 	public void makeRoomDirtyAndThenCleanItTest() {
 		RoomGrid possiblyDirty = new RoomGrid(3);
 		Point dirtyPoint = new Point(2,2);
-		possiblyDirty.setDirtyLocation(2, 2);
+		possiblyDirty.setDirtyLocation(new Point(2, 2));
 		RoboCleaner rc =
 				 new RoboCleaner(possiblyDirty, dirtyPoint);
 		boolean somethingCleaned = rc.isLocationDirty();
@@ -109,7 +119,7 @@ public class RoboCleanerTest {
 	@Test
 	public void makeRoomHaveNothingDirtyThenCleanItTest() {
 		RoomGrid noDirt = new RoomGrid(3);
-		noDirt.setDirtyLocation(2, 2);
+		noDirt.setDirtyLocation(new Point(2, 2));
 		RoboCleaner rc =
 				 new RoboCleaner(noDirt);
 		boolean somethingCleaned = rc.isLocationDirty();
@@ -120,20 +130,20 @@ public class RoboCleanerTest {
 	@Test
 	public void dirtyRoomIsCleanedAndThenCheckCount() {
 		RoomGrid dirty = new RoomGrid(7);
-		dirty.setDirtyLocation(1, 0);
-		dirty.setDirtyLocation(2, 0);
+		dirty.setDirtyLocation(new Point(1, 0));
+		dirty.setDirtyLocation(new Point(2, 0));
 		RoboCleaner rc = new RoboCleaner(dirty);
 		boolean somethingNeedsCleaning = rc.isLocationDirty();
 		assertFalse(somethingNeedsCleaning);
-		rc.moveAndClean(DirectionsFactory.getInstance("EAST"));
+		rc.moveAndClean(DirectionsFactory.getInstance("E"));
 		somethingNeedsCleaning = rc.isLocationDirty();
 		assertFalse(somethingNeedsCleaning);
 		assertTrue(rc.getCleanCounter() == 1);
-		rc.moveAndClean(DirectionsFactory.getInstance("EAST"));
+		rc.moveAndClean(DirectionsFactory.getInstance("E"));
 		assertTrue(rc.getCleanCounter() == 2);
-		rc.moveAndClean(DirectionsFactory.getInstance("EAST"));
+		rc.moveAndClean(DirectionsFactory.getInstance("E"));
 		assertTrue(rc.getCleanCounter() == 2);
-		rc.moveAndClean(DirectionsFactory.getInstance("EAST"));
+		rc.moveAndClean(DirectionsFactory.getInstance("E"));
 		assertTrue(rc.getCleanCounter() == 2);
 	}
 

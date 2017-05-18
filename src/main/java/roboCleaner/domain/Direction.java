@@ -6,7 +6,7 @@ public class Direction {
 	private int xIncrement;
 	private int yIncrement;
 	
-	Direction( int xInc, int yInc) {
+	public Direction( int xInc, int yInc) {
 		xIncrement = xInc;
 		yIncrement = yInc;
 	}

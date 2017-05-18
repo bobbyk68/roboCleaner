@@ -37,15 +37,15 @@ public class RoomGrid {
 		return false;
 	}
 
-	public boolean setDirtyLocation(int i, int j) {
-		if (i < 0 || i > dimension - 1 ) {
+	public boolean setDirtyLocation(Point p) {
+		if (p.getX() < 0 || p.getX() > dimension - 1 ) {
 			return false;
 		}
 		
-		if ( j < 0 || j > dimension -1 ) {
+		if ( p.getY() < 0 || p.getY() > dimension -1 ) {
 			return false;
 		}
-		grid[i][j] = 1;
+		grid[p.getX()][p.getY()] = 1;
 		return true;
 	}
 	

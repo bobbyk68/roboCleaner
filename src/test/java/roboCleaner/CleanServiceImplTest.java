@@ -21,10 +21,41 @@ public class CleanServiceImplTest {
     	CleanService clean = new CleanServiceImpl();
     	ResponseMessage res = clean.cleanRoom(new Message(room, coords, patch, "EE"));
     	assertEquals(2,  res.getPatches());
-    	//assertEquals( res.getCoords())
-        
-	
-	
+    	int[] finalPlace = res.getCoords();
+    	assertEquals(2, finalPlace[0]);
+    	assertEquals(0, finalPlace[1]);
 	}
+	
+	@Test 
+	public void badOriginalLocationTest() {
+		int[] room = { 3, 3 };
+		int[] coords = { 5, 5};
+		int[][] patch = { {1,0}, {2, 0} };
+        
+    	CleanService clean = new CleanServiceImpl();
+    	ResponseMessage res = clean.cleanRoom(new Message(room, coords, patch, "E"));
+    	assertEquals(1,  res.getPatches());
+    	int[] finalPlace = res.getCoords();
+    	assertEquals(1, finalPlace[0]);
+    	assertEquals(0, finalPlace[1]);
+		
+	}
+	
+	@Test 
+	public void noMovementOfRobotTest() {
+		int[] room = { 5, 5 };
+		int[] coords = { 0, 0};
+		int[][] patch = { {0,0} };
+        
+    	CleanService clean = new CleanServiceImpl();
+    	ResponseMessage res = clean.cleanRoom(new Message(room, coords, patch, ""));
+    	assertEquals(1,  res.getPatches());
+    	int[] finalPlace = res.getCoords();
+    	assertEquals(1, finalPlace[0]);
+    	assertEquals(0, finalPlace[0]);
+		
+	}
+	
+	
 
 }

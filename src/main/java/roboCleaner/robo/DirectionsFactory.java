@@ -1,5 +1,7 @@
 package roboCleaner.robo;
 
+import java.util.Optional;
+
 import roboCleaner.domain.Direction;
 import roboCleaner.domain.Directions;
 
@@ -14,7 +16,8 @@ public class DirectionsFactory {
 		Direction returnDirection = new Direction(0,0);
 		Directions direction = null;
 		
-		if ( DIRECTION_OPTIONS.indexOf(template) != -1) {
+		Optional<String> available = Optional.of(template);
+		if (available.isPresent() && template.length() > 0 && DIRECTION_OPTIONS.indexOf(template) != -1) {
 			direction = Directions.valueOf(template);
 			switch(direction) {
 			
@@ -33,7 +36,6 @@ public class DirectionsFactory {
 				default	:  returnDirection = new Direction(0,0);
 			}
 		}
-		
 		return returnDirection;
 	}
 }

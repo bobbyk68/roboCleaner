@@ -26,15 +26,21 @@ public class CleanServiceImpl implements CleanService {
 	    	dirtyRoom.setDirtyLocation(new Point( dirty[0], dirty[1]));
 	    }
 	    
-	    String[]  direction = instructions.split("[A-Z]");
+	    String[]  direction = getDirections(instructions);
 	    for ( String move : direction) {
-	    	rc.move(DirectionsFactory.getInstance(move));
+	    	rc.moveAndClean(DirectionsFactory.getInstance(move));
 	    }
 	    
 	    Point p = rc.getLocation();
 	    return new ResponseMessage(new int[] { p.getX(), p.getY()}
 	    	, rc.getCleanCounter());
 	    
+	}
+	
+	
+	private String[] getDirections(String instructions) {
+		String[]  direction = instructions.split("(?!^)");
+		return direction;
 	}
 
 }

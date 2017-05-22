@@ -51,8 +51,8 @@ public class CleanServiceImplTest {
     	ResponseMessage res = clean.cleanRoom(new Message(room, coords, patch, ""));
     	assertEquals(1,  res.getPatches());
     	int[] finalPlace = res.getCoords();
-    	assertEquals(1, finalPlace[0]);
     	assertEquals(0, finalPlace[0]);
+    	assertEquals(0, finalPlace[1]);
 		
 	}
 	

@@ -3,7 +3,9 @@ package roboCleaner.service;
 import roboCleaner.core.Message;
 import roboCleaner.core.ResponseMessage;
 import roboCleaner.domain.Point;
-import roboCleaner.domain.RoomGrid;
+import roboCleaner.domain.Room;
+import roboCleaner.domain.SimpleRoom;
+import roboCleaner.robo.Cleaner;
 import roboCleaner.robo.DirectionsFactory;
 import roboCleaner.robo.RoboCleaner;
 
@@ -17,8 +19,8 @@ public class CleanServiceImpl implements CleanService {
 	    int[] startingPoint = request.getCoords();
 	    int[][] patch = request.getPatches();
 	    String instructions = request.getInstructions();
-	    RoomGrid dirtyRoom = new RoomGrid(roomDimension[0]);
-	    RoboCleaner rc =
+	    Room dirtyRoom = new SimpleRoom(roomDimension[0]);
+	    Cleaner rc =
 				 new RoboCleaner(dirtyRoom, 
 						 new Point(startingPoint[0],startingPoint[1]));
 	    

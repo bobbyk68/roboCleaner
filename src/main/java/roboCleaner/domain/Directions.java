@@ -7,10 +7,6 @@ public enum Directions {
 	
 	private String cardinalDirection;
 
-	private Directions(String cardinalDirection) {
-		this.cardinalDirection = cardinalDirection;
-	}
-
 	public String getCardinalDirection() {
 		return cardinalDirection;
 	}
@@ -19,7 +15,7 @@ public enum Directions {
 		this.cardinalDirection = cardinalDirection;
 	}
 	
-	
-	
-	
+	private Directions(String cardinalDirection) {
+		this.cardinalDirection = cardinalDirection;
+	}
 }

@@ -4,5 +4,5 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 
-public class DWGettingStartedConfiguration extends Configuration {
+public class CleanerConfiguration extends Configuration {
 }

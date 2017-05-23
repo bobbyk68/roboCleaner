@@ -28,7 +28,7 @@ public class ServiceTest {
         String expected = "I am alive!";
         //Obtain client from @Rule.
         Client client = resource.client();
-        WebTarget helloTarget = client.target("http://localhost:8080/hello");
+        WebTarget helloTarget = client.target("http://localhost:8080/clean");
         //To invoke response we use Invocation.Builder
         //and specify the media type of representation asked from resource.
         Invocation.Builder builder = helloTarget.request(MediaType.TEXT_PLAIN);
@@ -45,7 +45,7 @@ public class ServiceTest {
     	//Obtain client from @Rule.
         Client client = resource.client();
         //Get WebTarget from client using URI of root resource.
-        WebTarget target = client.target("http://localhost:8080/hello");
+        WebTarget target = client.target("http://localhost:8080/clean");
         
         int[] room =  { 5, 5};
     	int[] coords = {2, 1};

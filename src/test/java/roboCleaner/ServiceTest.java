@@ -50,7 +50,7 @@ public class ServiceTest {
         int[] room =  { 5, 5};
     	int[] coords = {2, 1};
     	int[][] patch = { {1,0}, {2, 0} };
-        String response = target.request(MediaType.APPLICATION_JSON)
+        String response = target.request(MediaType.APPLICATION_JSON)	
                 .accept(MediaType.APPLICATION_JSON)
                 .post(Entity.json(new Message(room, coords, patch, "NEWSW")), String.class);
         
